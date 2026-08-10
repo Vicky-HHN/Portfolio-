@@ -15,11 +15,13 @@ import Stats from "./components/Stats";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 
+const SCROLL_SPY_SECTIONS = ["home", "about", "work", "skills", "journal", "explorations", "contact"];
+
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   // Active section tracking for navbar ScrollSpy
-  const activeSection = useScrollSpy(["home", "about", "work", "skills", "journal", "explorations", "contact"]);
+  const activeSection = useScrollSpy(SCROLL_SPY_SECTIONS);
 
   // Initialize Lenis Smooth Scroll
   useEffect(() => {
