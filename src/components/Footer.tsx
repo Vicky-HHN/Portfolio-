@@ -8,7 +8,6 @@ export default function Footer() {
     { label: "GitHub", href: portfolioData.personalInfo.github },
     { label: "LinkedIn", href: portfolioData.personalInfo.linkedin },
     { label: "Email", href: `mailto:${portfolioData.personalInfo.email}` },
-    { label: "Resume", href: portfolioData.personalInfo.resume, target: "_blank" },
   ];
 
   return (
@@ -32,14 +31,12 @@ export default function Footer() {
             <a
               key={link.label}
               href={link.href}
-              target={link.target}
-              rel={link.target ? "noreferrer" : undefined}
+              target="_blank"
+              rel="noopener noreferrer"
               className="hover:text-accent-blue transition-colors flex items-center gap-0.5 relative group focus-visible:outline-none"
             >
               <span>{link.label}</span>
-              {link.target === "_blank" && (
-                <ArrowUpRight className="w-3 h-3 text-muted/50 group-hover:text-accent-blue transition-colors" />
-              )}
+              <ArrowUpRight className="w-3 h-3 text-muted/50 group-hover:text-accent-blue transition-colors" />
             </a>
           ))}
         </div>
@@ -47,9 +44,9 @@ export default function Footer() {
       </div>
 
       {/* Copy & Location bar */}
-      <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 mt-8 pt-6 border-t border-stroke/10 text-muted/50 text-[10px] font-mono uppercase tracking-widest">
-        <span>Stuttgart, Baden-Württemberg, Germany</span>
-        <span>&copy; {currentYear} {portfolioData.personalInfo.name}. All Rights Reserved.</span>
+      <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 mt-8 pt-6 border-t border-t-stroke/10 text-muted/50 text-[10px] font-mono uppercase tracking-widest">
+        <span>{portfolioData.personalInfo.location} &middot; {portfolioData.personalInfo.note}</span>
+        <span>&copy; {currentYear} &middot; Vishva Gandhi &middot; M.Sc. Software Engineering & Management &middot; Data Analyst & BI Developer</span>
       </div>
     </footer>
   );

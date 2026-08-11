@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 import { useReducedMotion } from "../hooks/useReducedMotion";
-import { BarChart3, Terminal, GraduationCap } from "lucide-react";
+import { BarChart3, Terminal, Award } from "lucide-react";
 import { portfolioData } from "../data/portfolio";
 
 export default function About() {
@@ -9,19 +9,19 @@ export default function About() {
 
   const cards = [
     {
-      title: "Data analysis",
-      description: "Cleaning, validating, exploring, and visualizing data patterns to uncover valuable technical insights.",
+      title: "Data Analysis & BI",
+      description: "Power BI dashboards, DAX, Power Query, KPI development, and translating data into decision-ready insights.",
       icon: BarChart3,
     },
     {
-      title: "Python development",
-      description: "Writing scripts, robust scrapers, local automations, reliable APIs, and modular processing pipelines.",
+      title: "Data Engineering & Automation",
+      description: "Python & SQL ETL/ELT pipelines, PostgreSQL, MongoDB, REST APIs, and large-scale data processing.",
       icon: Terminal,
     },
     {
-      title: "Continuous learning",
-      description: "Exploring secure cloud services, AI LLM prompt techniques, dashboard software, and engineering practices.",
-      icon: GraduationCap,
+      title: "AI & Continuous Learning",
+      description: "LLM/AI evaluation, prompt engineering, deep learning, and ongoing learning in cloud, DevOps, and advanced software architecture.",
+      icon: Award,
     }
   ];
 
@@ -69,15 +69,15 @@ export default function About() {
 
           <div className="md:col-span-8 flex flex-col gap-6">
             <h2 className="text-3xl md:text-4xl text-text font-semibold leading-tight font-sans tracking-tight">
-              Building practical skills for <span className="font-serif-italic font-medium text-accent-blue">real-world problems</span>.
+              About <span className="font-serif-italic font-medium text-accent-blue">me</span>
             </h2>
 
             <div className="flex flex-col gap-4 text-base md:text-lg text-muted/90 leading-relaxed max-w-3xl">
               <p>
-                I am an IT student based in Stuttgart, Germany, focused on developing practical skills in Python programming, data analysis, web scraping, cloud computing, and artificial intelligence.
+                I am a M.Sc. Software Engineering & Management student at Hochschule Heilbronn with 1+ year of hands-on experience spanning both data analysis and data engineering. On the analytics side, I build Power BI dashboards, design data models, write DAX measures, and use Power Query to transform data for clear KPI reporting. On the engineering side, I automate ETL pipelines in Python and SQL, work with relational and cloud databases, and integrate data via REST APIs.
               </p>
               <p>
-                My goal is to create reliable, understandable, and useful technical solutions while continuously improving my programming and analytical skills.
+                I enjoy working across the full data lifecycle – from raw data, to automated pipeline, to polished dashboard – and I am comfortable evaluating and applying LLM/AI tools to real business processes. I am work-authorised in Germany and actively developing my German language skills.
               </p>
             </div>
           </div>

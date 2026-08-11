@@ -43,10 +43,10 @@ export default function Contact() {
             [ SECURE CONNECTION PROTOCOL ]
           </span>
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-text leading-tight font-sans">
-            Let's build <span className="font-serif-italic text-accent-blue font-medium">something useful</span>.
+            Let's <span className="font-serif-italic text-accent-blue font-medium">connect</span>
           </h2>
           <p className="text-sm md:text-base text-muted/90 leading-relaxed mt-2">
-            I am open to internships, working-student opportunities, and practical projects related to data, Python, software, and AI.
+            I am open to internships, working-student positions, and practical projects related to data analysis, BI, data engineering, and AI. Feel free to reach out for opportunities in Germany or remote collaborations.
           </p>
         </div>
 
@@ -55,7 +55,7 @@ export default function Contact() {
 
           {/* Quick Mail Info Column */}
           <div className="md:col-span-4 flex flex-col gap-6 p-6 rounded-2xl bg-surface border border-stroke/40">
-            <h3 className="text-xs font-bold text-text font-mono uppercase tracking-widest">Direct channel</h3>
+            <h3 className="text-xs font-bold text-text font-mono uppercase tracking-widest">Direct channels</h3>
             <div className="flex flex-col gap-1.5">
               <span className="text-xs text-muted">PRIMARY EMAIL</span>
               <a
@@ -71,6 +71,12 @@ export default function Contact() {
                 {portfolioData.personalInfo.location}
               </span>
             </div>
+            <div className="flex flex-col gap-1.5 pt-4 border-t border-stroke/20">
+              <span className="text-xs text-muted">WORK AUTHORISATION</span>
+              <span className="text-xs text-text font-medium">
+                {portfolioData.personalInfo.note}
+              </span>
+            </div>
           </div>
 
           {/* Fully Functional Contact Form */}
@@ -83,7 +89,7 @@ export default function Contact() {
                 <input
                   id="name"
                   type="text"
-                  placeholder="Lukas Weber"
+                  placeholder="Your Name"
                   {...register("name", { required: "Name is required" })}
                   className="px-4 py-3 rounded-xl border border-stroke bg-black/40 text-sm text-text focus:outline-none focus:border-accent-blue/60 transition-colors w-full"
                 />
@@ -101,7 +107,7 @@ export default function Contact() {
                 <input
                   id="email"
                   type="email"
-                  placeholder="lukas.weber@example.de"
+                  placeholder="email@example.com"
                   {...register("email", {
                     required: "Email is required",
                     pattern: {

@@ -5,7 +5,7 @@ import { portfolioData } from "../data/portfolio";
 import { useReducedMotion } from "../hooks/useReducedMotion";
 import { ArrowDown, Mail } from "lucide-react";
 
-const roles = ["IT Student", "Data Analyst", "Python Developer", "Problem Solver"];
+const roles = ["Data Analyst", "BI Developer", "Python Developer", "Data Engineer"];
 
 export default function Hero() {
   const [roleIndex, setRoleIndex] = useState(0);
@@ -82,8 +82,8 @@ export default function Hero() {
 
         {/* Eyebrow */}
         <div className="hero-eyebrow overflow-hidden">
-          <span className="text-xs md:text-sm font-semibold tracking-[0.25em] text-accent-blue bg-white/5 px-4 py-1.5 rounded-full border border-stroke/40 uppercase">
-            IT STUDENT &middot; DATA ANALYST
+          <span className="text-xs md:text-sm font-semibold tracking-wider text-accent-blue bg-white/5 px-4 py-1.5 rounded-full border border-stroke/40 uppercase">
+            M.Sc. Software Engineering & Management &middot; Data Analyst & BI Developer
           </span>
         </div>
 
@@ -100,11 +100,11 @@ export default function Hero() {
         {/* Supporting Headline / Carousel text */}
         <div className="hero-desc flex flex-col gap-4 max-w-2xl text-center">
           <h2 className="text-xl md:text-2xl text-text leading-snug font-medium">
-            I turn data into useful insights and ideas into working software.
+            I work across data analysis and data engineering &ndash; from raw data and ETL pipelines to Power BI dashboards and decision-ready insights.
           </h2>
 
           <div className="flex items-center justify-center gap-2 text-base md:text-lg text-muted min-h-[32px]">
-            <span>An</span>
+            <span>A</span>
             <div className="relative w-40 h-8 flex items-center justify-center overflow-hidden">
               <AnimatePresence mode="wait">
                 {!isReducedMotion ? (
@@ -125,11 +125,11 @@ export default function Hero() {
                 )}
               </AnimatePresence>
             </div>
-            <span>based in Stuttgart.</span>
+            <span>based in Germany.</span>
           </div>
 
-          <p className="text-sm md:text-base text-muted/90 max-w-lg mx-auto leading-relaxed mt-2">
-            {portfolioData.personalInfo.availability}. I build practical projects with Python, data analysis, web scraping, automation, and modern web technologies.
+          <p className="text-sm md:text-base text-muted/90 max-w-xl mx-auto leading-relaxed mt-2">
+            I am a M.Sc. Software Engineering & Management student at Hochschule Heilbronn with hands-on experience in Power BI dashboards, Python & SQL ETL pipelines, relational databases, REST APIs, and practical AI/LLM evaluation. My focus is building reliable, automated data workflows and turning complex data into clear, actionable reporting.
           </p>
         </div>
 
@@ -139,7 +139,7 @@ export default function Hero() {
             onClick={handleScrollToWork}
             className="group relative inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 bg-white text-black hover:bg-neutral-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-blue focus-visible:ring-offset-2"
           >
-            <span>View my work</span>
+            <span>View my projects</span>
             <ArrowDown className="w-4 h-4 transition-transform duration-300 group-hover:translate-y-0.5" />
           </button>
 
@@ -148,7 +148,7 @@ export default function Hero() {
             className="group inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 border border-stroke bg-surface hover:bg-surface-elevated hover:border-accent-blue/30 text-text cursor-pointer focus-visible:outline-none"
           >
             <Mail className="w-4 h-4 text-muted group-hover:text-accent-blue transition-colors" />
-            <span>Let's connect</span>
+            <span>Get in touch</span>
           </a>
         </div>
 

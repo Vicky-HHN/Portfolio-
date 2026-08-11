@@ -7,15 +7,16 @@ import LoadingScreen from "./components/LoadingScreen";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
+import Experience from "./components/Experience";
+import Education from "./components/Education";
 import Projects from "./components/Projects";
 import Skills from "./components/Skills";
-import Journal from "./components/Journal";
-import Explorations from "./components/Explorations";
 import Stats from "./components/Stats";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 
-const SCROLL_SPY_SECTIONS = ["home", "about", "work", "skills", "journal", "explorations", "contact"];
+// We keep clean one-page navigation with explicit anchors
+const SCROLL_SPY_SECTIONS = ["home", "about", "experience", "education", "work", "skills", "contact"];
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -62,10 +63,10 @@ export default function App() {
           <main>
             <Hero />
             <About />
+            <Experience />
+            <Education />
             <Projects />
             <Skills />
-            <Journal />
-            <Explorations />
             <Stats />
             <Contact />
           </main>

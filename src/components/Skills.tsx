@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 import { useReducedMotion } from "../hooks/useReducedMotion";
 import { portfolioData } from "../data/portfolio";
+import { Award, Globe } from "lucide-react";
 
 export default function Skills() {
   const isReducedMotion = useReducedMotion();
@@ -43,7 +44,7 @@ export default function Skills() {
             [ SKILL MATRIX ]
           </span>
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-text">
-            Tools I use and skills I am developing.
+            Technical skills
           </h2>
         </div>
 
@@ -71,25 +72,57 @@ export default function Skills() {
                 {group.category}
               </h3>
 
-              {/* Skill Pill badges with genuine skill levels */}
+              {/* Skill Pill badges */}
               <div className="flex flex-wrap gap-2.5 mt-2">
-                {group.skills.map((skill) => (
+                {group.skills.map((skillName) => (
                   <div
-                    key={skill.name}
-                    className="flex flex-col gap-1 px-4 py-2.5 rounded-xl bg-black/40 border border-stroke/50 hover:border-accent-blue/30 transition-all duration-300 group/pill"
+                    key={skillName}
+                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-black/40 border border-stroke/50 hover:border-accent-blue/30 transition-all duration-300 text-xs text-text/90 font-medium"
                   >
-                    <span className="text-sm font-semibold text-text group-hover/pill:text-accent-blue transition-colors duration-200">
-                      {skill.name}
-                    </span>
-                    <span className="text-[10px] text-muted/80 font-mono">
-                      {skill.level}
-                    </span>
+                    <span>{skillName}</span>
                   </div>
                 ))}
               </div>
             </motion.div>
           ))}
         </motion.div>
+
+        {/* Certifications & Languages Dual Row */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 mt-8">
+
+          {/* Certifications Block */}
+          <div className="md:col-span-7 p-8 rounded-2xl bg-surface border border-stroke/40 flex flex-col gap-6">
+            <h3 className="text-lg font-bold text-text uppercase tracking-wider font-mono flex items-center gap-2">
+              <Award className="w-5 h-5 text-accent-blue" />
+              Certifications
+            </h3>
+            <div className="flex flex-col gap-3.5">
+              {portfolioData.certifications.map((cert, idx) => (
+                <div key={idx} className="flex items-start gap-2.5 text-xs md:text-sm text-muted/95 leading-relaxed">
+                  <span className="text-accent-blue mt-1 font-mono text-xs">0{idx + 1}.</span>
+                  <p>{cert}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Languages Block */}
+          <div className="md:col-span-5 p-8 rounded-2xl bg-surface border border-stroke/40 flex flex-col gap-6">
+            <h3 className="text-lg font-bold text-text uppercase tracking-wider font-mono flex items-center gap-2">
+              <Globe className="w-5 h-5 text-accent-blue" />
+              Languages
+            </h3>
+            <div className="flex flex-col gap-4">
+              {portfolioData.languages.map((lang, idx) => (
+                <div key={idx} className="flex items-center justify-between p-3.5 rounded-xl border border-stroke/60 bg-black/40 hover:border-accent-blue/20 transition-all duration-300">
+                  <span className="text-xs md:text-sm font-semibold text-text">{lang.split(" — ")[0]}</span>
+                  <span className="text-xs font-mono text-muted">{lang.split(" — ")[1]}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+        </div>
 
       </div>
     </section>

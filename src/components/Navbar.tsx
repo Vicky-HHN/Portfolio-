@@ -19,12 +19,13 @@ export default function Navbar({ activeSection }: NavbarProps) {
   }, []);
 
   const navItems = [
-    { label: "Home", href: "#home", id: "home" },
-    { label: "About", href: "#about", id: "about" },
-    { label: "Work", href: "#work", id: "work" },
-    { label: "Skills", href: "#skills", id: "skills" },
-    { label: "Resume", href: portfolioData.personalInfo.resume, target: "_blank", id: "resume" },
-    { label: "Contact", href: `mailto:${portfolioData.personalInfo.email}`, id: "contact" },
+    { label: "Home", href: "#home", id: "home", target: undefined },
+    { label: "About", href: "#about", id: "about", target: undefined },
+    { label: "Experience", href: "#experience", id: "experience", target: undefined },
+    { label: "Education", href: "#education", id: "education", target: undefined },
+    { label: "Work", href: "#work", id: "work", target: undefined },
+    { label: "Skills", href: "#skills", id: "skills", target: undefined },
+    { label: "Contact", href: `mailto:${portfolioData.personalInfo.email}`, id: "contact", target: undefined },
   ];
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, item: typeof navItems[0]) => {
@@ -43,14 +44,14 @@ export default function Navbar({ activeSection }: NavbarProps) {
     <nav className="fixed top-6 left-0 right-0 z-50 flex justify-center px-4">
       {/* Floating Pill Nav */}
       <div
-        className={`w-full max-w-2xl glass-panel rounded-full px-4 md:px-6 py-3 flex items-center justify-between transition-all duration-300 ${
+        className={`w-full max-w-3xl glass-panel rounded-full px-4 md:px-6 py-3 flex items-center justify-between transition-all duration-300 ${
           isScrolled ? "shadow-lg border-stroke/80 bg-black/80 backdrop-blur-md" : "border-stroke/50 bg-black/50"
         }`}
       >
         {/* Logo Icon */}
         <a
           href="#home"
-          onClick={(e) => handleLinkClick(e, { label: "Home", href: "#home", id: "home" })}
+          onClick={(e) => handleLinkClick(e, { label: "Home", href: "#home", id: "home", target: undefined })}
           className="flex items-center gap-2 group cursor-pointer focus-visible:outline-none"
           aria-label="Scroll to top"
         >
@@ -75,7 +76,7 @@ export default function Navbar({ activeSection }: NavbarProps) {
                 href={item.href}
                 target={item.target}
                 onClick={(e) => handleLinkClick(e, item)}
-                className={`text-xs px-3 py-1.5 rounded-full font-medium transition-all duration-200 relative focus-visible:outline-none ${
+                className={`text-xs px-2.5 py-1.5 rounded-full font-medium transition-all duration-200 relative focus-visible:outline-none ${
                   isActive
                     ? "text-accent-blue bg-white/5"
                     : "text-muted hover:text-text hover:bg-white/5"

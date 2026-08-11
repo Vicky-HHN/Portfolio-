@@ -63,10 +63,10 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
           transition={{ duration: 0.6 }}
           className="text-xs tracking-widest text-muted uppercase"
         >
-          Lukas Weber &middot; Portfolio Ingestion
+          Vishva Gandhi &middot; Portfolio Ingestion
         </motion.div>
         <div className="text-xs text-muted font-mono uppercase">
-          Stuttgart, DE
+          Heilbronn, DE
         </div>
       </div>
 

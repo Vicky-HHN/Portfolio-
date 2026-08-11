@@ -54,7 +54,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
               <a
                 href={project.githubUrl}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="p-2 rounded-full border border-stroke/60 bg-white/5 hover:bg-white/10 text-muted hover:text-text transition-colors focus-visible:outline-none"
                 aria-label={`View ${project.title} source code on GitHub`}
               >
@@ -76,7 +76,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
                 <a
                   href={project.liveDemoUrl}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="p-2 rounded-full border border-stroke/60 bg-white/5 hover:bg-white/10 text-muted hover:text-text transition-colors focus-visible:outline-none"
                   aria-label={`View ${project.title} live deployment`}
                 >
@@ -89,7 +89,8 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
           <h3 className="text-xl md:text-2xl font-bold text-text group-hover:text-accent-blue transition-colors duration-300 tracking-tight">
             {project.title}
           </h3>
-          <p className="text-sm text-muted/90 mt-2 leading-relaxed max-w-xl">
+          <span className="text-xs text-muted block mt-1 font-mono tracking-tight">{project.tagline}</span>
+          <p className="text-sm text-muted/90 mt-3 leading-relaxed max-w-xl">
             {project.description}
           </p>
         </div>
@@ -171,12 +172,9 @@ export default function Projects() {
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-text">
               Selected projects
             </h2>
-            <p className="text-sm md:text-base text-muted/90 leading-relaxed mt-2">
-              A collection of practical projects built while developing my skills in programming, analytics, automation, and AI.
-            </p>
           </div>
           <span className="text-xs text-muted/60 font-mono hidden md:block">
-            STUTTGART &middot; GERMANY &middot; LW
+            HEILBRONN &middot; GERMANY &middot; VG
           </span>
         </div>
 

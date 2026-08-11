@@ -1,11 +1,12 @@
 export interface Project {
   id: string;
   title: string;
+  tagline: string;
   description: string;
   longDescription: string;
   technologies: string[];
   githubUrl: string;
-  liveDemoUrl: string;
+  liveDemoUrl?: string;
   featured: boolean;
   size: 'large' | 'small';
   metric?: string;
@@ -14,25 +15,24 @@ export interface Project {
 
 export interface SkillGroup {
   category: string;
-  skills: { name: string; level: 'Practical experience' | 'Working knowledge' | 'Currently learning' | 'Familiar with' }[];
+  skills: string[];
 }
 
-export interface JournalEntry {
-  id: string;
+export interface Experience {
   title: string;
-  category: string;
-  readingTime: string;
-  date: string;
-  summary: string;
+  company: string;
+  location: string;
+  dates: string;
+  bullets: string[];
 }
 
-export interface ExplorationItem {
-  id: string;
-  title: string;
-  category: string;
-  codeSnippet?: string;
-  visualizationType?: 'chart' | 'scrape' | 'cloud' | 'ai';
-  description: string;
+export interface Education {
+  degree: string;
+  school: string;
+  location: string;
+  dates: string;
+  gpa: string;
+  modules: string[];
 }
 
 export interface PortfolioData {
@@ -43,243 +43,154 @@ export interface PortfolioData {
     initials: string;
     title: string;
     location: string;
-    graduation: string;
+    graduation?: string;
     email: string;
+    phone: string;
     github: string;
     linkedin: string;
     resume: string;
     availability: string;
+    note: string;
   };
+  experience: Experience[];
+  education: Education[];
   projects: Project[];
   skillsData: SkillGroup[];
-  journal: JournalEntry[];
-  explorations: ExplorationItem[];
+  certifications: string[];
+  languages: string[];
   statistics: { value: string; label: string }[];
 }
 
 export const portfolioData: PortfolioData = {
   personalInfo: {
-    name: "Lukas Weber",
-    firstName: "Lukas",
-    lastName: "Weber",
-    initials: "LW",
-    title: "IT Student | Aspiring Data Analyst",
-    location: "Stuttgart, Baden-Württemberg, Germany",
-    graduation: "Expected August 2026",
-    email: "lukas.weber.stuttgart@example.com",
-    github: "https://github.com/lukas-weber-placeholder",
-    linkedin: "https://linkedin.com/in/lukas-weber-placeholder",
-    resume: "#", // placeholder
-    availability: "Open to internships and working-student opportunities"
+    name: "Vishva Gandhi",
+    firstName: "Vishva",
+    lastName: "Gandhi",
+    initials: "VG",
+    title: "M.Sc. Software Engineering & Management · Data Analyst & BI Developer",
+    location: "Heilbronn, Germany",
+    email: "vishvagandhi027@gmail.com",
+    phone: "+49 15563 612 921",
+    github: "https://github.com/Vicky-HHN",
+    linkedin: "https://linkedin.com/in/vishva-gandhi",
+    resume: "#",
+    availability: "Open to internships and working-student opportunities",
+    note: "Work-authorised in Germany"
   },
+  experience: [
+    {
+      title: "Data Analyst & BI Developer",
+      company: "Oscar IT Solutions",
+      location: "India",
+      dates: "Jan 2024 – Feb 2025",
+      bullets: [
+        "Built and maintained 4 real-time Power BI dashboards, designing data models, DAX-based KPI logic, and Power Query transformations for cross-functional business reporting.",
+        "Designed and automated ETL pipelines in Python and SQL processing 500K+ records from multiple source systems, reducing reporting cycles by 40% and establishing robust data engineering workflows.",
+        "Evaluated 3 AI/LLM solutions (GPT-4 and open-source models) using a structured, criteria-based methodology, delivering a technical decision framework and recommendations to the engineering team.",
+        "Worked with relational databases (PostgreSQL) and REST APIs to integrate and structure data across systems, ensuring reliable, consistent data pipelines.",
+        "Gathered requirements from cross-functional stakeholders, translated data into clear insights, and documented data models and processes for long-term maintainability."
+      ]
+    }
+  ],
+  education: [
+    {
+      degree: "M.Sc. Software Engineering & Management",
+      school: "Hochschule Heilbronn",
+      location: "Germany",
+      dates: "Mar 2025 – Present",
+      gpa: "GPA: 1.9 / 4.0",
+      modules: ["Data Science Lab", "Cloud Computing", "Advanced Software Architecture", "DevOps and SecOps", "Deep Learning"]
+    },
+    {
+      degree: "B.Tech. Information Technology",
+      school: "A.D. Patel Institute of Technology",
+      location: "India",
+      dates: "Jul 2020 – Jan 2024",
+      gpa: "GPA: 1.8 (German scale)",
+      modules: ["Python Programming", "Database Systems", "Statistics & Data Analysis", "Algorithms"]
+    }
+  ],
   projects: [
     {
       id: "proj-1",
-      title: "Python Data Analysis Dashboard",
-      description: "Interactive EDA dashboard for cleaning, validating, and displaying business KPI metrics.",
-      longDescription: "A practical Python data analysis dashboard designed to assist business analysts. It handles tabular dataset ingestion, automatically runs cleaning pipelines, validates schemas with pandas-schema, and presents insights via interactive charts.",
-      technologies: ["Python", "pandas", "NumPy", "Matplotlib", "Data cleaning", "Exploratory analysis"],
-      githubUrl: "https://github.com/lukas-weber-placeholder/python-eda-dashboard",
-      liveDemoUrl: "#",
+      title: "Strategic Sales Performance Dashboard",
+      tagline: "Power BI · PostgreSQL · ETL · KPI reporting",
+      description: "Designed a scalable data model (star schema, PostgreSQL) and an automated ETL pipeline aggregating 9,000+ transaction records from multiple sources as the foundation for the reporting layer. Built 6+ interactive Power BI dashboards with DAX-based KPI logic and Power Query transformations, enabling 3x faster analysis for business stakeholders.",
+      longDescription: "Designed a scalable data model (star schema, PostgreSQL) and an automated ETL pipeline aggregating 9,000+ transaction records from multiple sources as the foundation for the reporting layer. Built 6+ interactive Power BI dashboards with DAX-based KPI logic and Power Query transformations, enabling 3x faster analysis for business stakeholders.",
+      technologies: ["Power BI", "PostgreSQL", "ETL", "KPI reporting", "DAX", "Power Query"],
+      githubUrl: "https://github.com/Vicky-HHN",
       featured: true,
       size: "large",
-      metric: "99.8% clean ingestion rate",
-      insights: ["Automatic handle of null values", "Duplicate item detection & consolidation", "Instant statistical distributions"]
+      metric: "3x faster analysis",
+      insights: ["Star schema layout", "DAX metrics formulation", "Power Query cleansing"]
     },
     {
       id: "proj-2",
-      title: "Web Scraping and Price Tracker",
-      description: "Automated scraper for monitoring e-commerce price dynamics and identifying discount anomalies.",
-      longDescription: "A structured scrapper engineered to track product values periodically. Uses Requests and BeautifulSoup to extract live price data, validates schemas, formats clean datasets, and compiles a historic pricing sheet in pandas.",
-      technologies: ["Python", "Requests", "BeautifulSoup", "pandas", "Data validation", "Automation"],
-      githubUrl: "https://github.com/lukas-weber-placeholder/web-scraping-tracker",
-      liveDemoUrl: "#",
+      title: "AI-Powered Web Scraper & Analytics Pipeline",
+      tagline: "Python · Playwright · AI embeddings · Streamlit · REST APIs",
+      description: "Built an end-to-end data pipeline in Python using Playwright for web scraping, with AI embedding-based quality gates for schema-agnostic ingestion into PostgreSQL at scale – a full extract-transform-load workflow with automated validation. Delivered a live Streamlit BI dashboard with 5+ KPI modules exposed via REST API for real-time, cross-functional analytics reporting.",
+      longDescription: "Built an end-to-end data pipeline in Python using Playwright for web scraping, with AI embedding-based quality gates for schema-agnostic ingestion into PostgreSQL at scale – a full extract-transform-load workflow with automated validation. Delivered a live Streamlit BI dashboard with 5+ KPI modules exposed via REST API for real-time, cross-functional analytics reporting.",
+      technologies: ["Python", "Playwright", "AI embeddings", "Streamlit", "REST APIs", "PostgreSQL"],
+      githubUrl: "https://github.com/Vicky-HHN",
       featured: true,
       size: "small",
-      metric: "Daily automatic scrape & report",
-      insights: ["Robust User-Agent rotation", "Graceful rate-limit throttling", "Instant Excel/CSV generation"]
+      metric: "5+ KPI modules",
+      insights: ["Playwright scraping", "AI Quality Gates", "Streamlit deployment"]
     },
     {
       id: "proj-3",
-      title: "Customer Churn Analysis",
-      description: "Statistical analysis pipeline to isolate main churn indicators and suggest risk mitigation strategies.",
-      longDescription: "An in-depth statistical analysis analyzing user demographics and engagement trends. Uses NumPy and Matplotlib to map out drop-off correlations, helping developers identify why customers stop using a service.",
-      technologies: ["Python", "pandas", "NumPy", "Matplotlib", "Statistical analysis", "Business insights"],
-      githubUrl: "https://github.com/lukas-weber-placeholder/customer-churn-analysis",
-      liveDemoUrl: "#",
+      title: "AI Video Upscaling — Windows Desktop Application",
+      tagline: "Deep learning · ESRGAN · SwinIR · CI/CD · PyInstaller",
+      description: "Engineered a deep learning inference pipeline using ESRGAN, SwinIR, and neural network architectures, benchmarking and evaluating 5 models with a systematic PSNR/SSIM-based framework. Packaged the complete application via PyInstaller and integrated an automated CI/CD pipeline, reducing manual processing time by 80% through full process automation.",
+      longDescription: "Engineered a deep learning inference pipeline using ESRGAN, SwinIR, and neural network architectures, benchmarking and evaluating 5 models with a systematic PSNR/SSIM-based framework. Packaged the complete application via PyInstaller and integrated an automated CI/CD pipeline, reducing manual processing time by 80% through full process automation.",
+      technologies: ["Deep learning", "ESRGAN", "SwinIR", "CI/CD", "PyInstaller", "Python"],
+      githubUrl: "https://github.com/Vicky-HHN",
       featured: true,
       size: "small",
-      metric: "15% identified key churn drivers",
-      insights: ["Cohort engagement charts", "Correlation matrices", "Actionable retention tips"]
-    },
-    {
-      id: "proj-4",
-      title: "AI-Powered Data Assistant",
-      description: "Intelligent agent leveraging prompt engineering and LLM integrations to answer dataset questions.",
-      longDescription: "An API-driven assistant that processes raw spreadsheet data and generates executive summaries. Interfaces with state-of-the-art LLMs to convert natural language queries into executable pandas filtering commands.",
-      technologies: ["Python", "APIs", "LLM integration", "Prompt engineering", "Data processing"],
-      githubUrl: "https://github.com/lukas-weber-placeholder/ai-data-assistant",
-      liveDemoUrl: "#",
-      featured: true,
-      size: "large",
-      metric: "Zero-shot natural queries to pandas",
-      insights: ["Protected prompt context injection", "JSON response schema enforcement", "Clean, sandboxed evaluation environment"]
+      metric: "80% reduction in manual time",
+      insights: ["ESRGAN model benchmark", "PyInstaller application packager", "Automated CI/CD pipeline"]
     }
   ],
   skillsData: [
     {
-      category: "Programming",
-      skills: [
-        { name: "Python", level: "Practical experience" },
-        { name: "SQL", level: "Working knowledge" },
-        { name: "JavaScript", level: "Working knowledge" },
-        { name: "TypeScript", level: "Familiar with" }
-      ]
+      category: "Data Analysis & BI",
+      skills: ["Power BI (Dashboards, Data Modelling, DAX, Power Query)", "Excel (advanced)", "Streamlit", "Matplotlib", "KPI development"]
     },
     {
-      category: "Data Analysis",
-      skills: [
-        { name: "pandas", level: "Practical experience" },
-        { name: "NumPy", level: "Working knowledge" },
-        { name: "Matplotlib", level: "Working knowledge" },
-        { name: "Data cleaning", level: "Practical experience" },
-        { name: "Data validation", level: "Practical experience" },
-        { name: "Exploratory data analysis", level: "Practical experience" }
-      ]
+      category: "Data Engineering & ETL",
+      skills: ["Python (Pandas, NumPy)", "SQL", "ETL/ELT pipelines", "PostgreSQL", "MongoDB", "Data modelling", "Large-scale data processing"]
     },
     {
-      category: "Development",
-      skills: [
-        { name: "Git & GitHub", level: "Practical experience" },
-        { name: "React", level: "Working knowledge" },
-        { name: "Vite", level: "Working knowledge" },
-        { name: "REST APIs", level: "Working knowledge" },
-        { name: "Web scraping", level: "Practical experience" }
-      ]
+      category: "Cloud & Platforms",
+      skills: ["AWS (Lambda, S3)", "Databricks", "Git", "CI/CD", "REST APIs", "Microsoft Fabric (keen to develop)"]
     },
     {
-      category: "Current learning",
-      skills: [
-        { name: "Cloud computing", level: "Currently learning" },
-        { name: "AI & LLM applications", level: "Currently learning" },
-        { name: "Advanced Python", level: "Currently learning" },
-        { name: "Data dashboards", level: "Currently learning" }
-      ]
+      category: "Microsoft 365 & Automation",
+      skills: ["Excel", "PowerPoint", "SharePoint (familiar)", "Power Automate (keen to develop)", "Power Apps (keen to develop)", "Microsoft Copilot (keen to develop)"]
+    },
+    {
+      category: "AI & Machine Learning",
+      skills: ["LLMs", "AI/LLM evaluation", "Prompt engineering", "AI embeddings", "Deep learning", "Scikit-learn", "Neural networks"]
+    },
+    {
+      category: "Methodologies",
+      skills: ["Stakeholder communication", "Requirements gathering", "Documentation", "Agile", "Cross-functional collaboration"]
     }
   ],
-  journal: [
-    {
-      id: "j-1",
-      title: "Building a reliable Python data-cleaning workflow",
-      category: "Data Engineering",
-      readingTime: "4 min read",
-      date: "Jul 2026",
-      summary: "Understanding how to manage messy tabular datasets, handle NaN values predictably, and enforce strict type rules with schema validation libraries."
-    },
-    {
-      id: "j-2",
-      title: "Lessons from my first web-scraping project",
-      category: "Web Scraping",
-      readingTime: "5 min read",
-      date: "Jun 2026",
-      summary: "Exploring rate limits, proper response header structures, using DOM trees in BeautifulSoup, and building robust scrapers that do not break easily."
-    },
-    {
-      id: "j-3",
-      title: "Using APIs to automate data collection",
-      category: "Automation",
-      readingTime: "3 min read",
-      date: "May 2026",
-      summary: "Setting up lightweight scheduled scripts to query RESTful APIs, process raw responses into nested arrays, and compile cleanly into standard database formats."
-    },
-    {
-      id: "j-4",
-      title: "Exploring AI assistants for data analysis",
-      category: "Artificial Intelligence",
-      readingTime: "6 min read",
-      date: "Apr 2026",
-      summary: "How to safely leverage large language models to write precise pandas query operations and construct smart, domain-aware visualization code."
-    }
+  certifications: [
+    "SAP Certified: Discover SAP BTP & Start with UX — SAP Emerging Technologies",
+    "Data Science Fundamentals for Data Analysts — Databricks / Coursera",
+    "Machine Learning with Python — IBM / Coursera",
+    "Introduction to Deep Learning & Neural Networks with Keras — IBM / Coursera",
+    "Introduction to Cloud Computing — IBM / Coursera"
   ],
-  explorations: [
-    {
-      id: "exp-1",
-      title: "Python Data-Cleaning Pipeline",
-      category: "Python code",
-      codeSnippet: `import pandas as pd
-import numpy as np
-
-def clean_sales_data(filepath: str) -> pd.DataFrame:
-    # Ingest CSV file with custom types
-    df = pd.read_csv(filepath)
-
-    # Standardize string capitalization & clean column spaces
-    df.columns = df.columns.str.strip().str.lower()
-
-    # Handle numeric columns safely and fill NaN
-    if 'revenue' in df.columns:
-        df['revenue'] = pd.to_numeric(df['revenue'], errors='coerce')
-        df['revenue'] = df['revenue'].fillna(0.0)
-
-    # Drop rows containing completely null identities
-    df = df.dropna(subset=['customer_id'])
-    return df`,
-      description: "A robust structural data cleaning function. It processes inputs safely, manages invalid inputs gracefully, and validates identities."
-    },
-    {
-      id: "exp-2",
-      title: "Data Visualization Matrix",
-      category: "Data visualization",
-      visualizationType: "chart",
-      description: "Visual exploration illustrating density curves and correlation tables for business KPIs."
-    },
-    {
-      id: "exp-3",
-      title: "Robust Scraper Core",
-      category: "Web scraping",
-      codeSnippet: `import requests
-from bs4 import BeautifulSoup
-
-def fetch_safe_html(url: str, headers: dict) -> str:
-    try:
-        response = requests.get(url, headers=headers, timeout=10)
-        # Verify if request was accepted
-        if response.status_code == 200:
-            return response.text
-        return f"Error: Received {response.status_code}"
-    except requests.RequestException as e:
-        return f"Connection Failed: {str(e)}""`,
-      description: "Fault-tolerant page fetching module with connection timeouts and HTTP status checking."
-    },
-    {
-      id: "exp-4",
-      title: "Dashboard Layout",
-      category: "Dashboard design",
-      visualizationType: "chart",
-      description: "A data analyst dashboard prototype focused on readability and strong visual hierarchy."
-    },
-    {
-      id: "exp-5",
-      title: "Cloud Pipeline Architecture",
-      category: "Cloud architecture",
-      visualizationType: "cloud",
-      description: "Architecture flow depicting automated data ingest pipelines running via serverless cloud triggers."
-    },
-    {
-      id: "exp-6",
-      title: "LLM Context Window Ingestion",
-      category: "AI experiments",
-      codeSnippet: `def format_prompt(context: str, query: str) -> list:
-    return [
-        {"role": "system", "content": "You are an analytical assistant. Return ONLY valid pandas expressions."},
-        {"role": "user", "content": f"Schema:\\n{context}\\n\\nFind: {query}"}
-    ]`,
-      description: "System message structuring to force strictly valid output formats from generative language APIs."
-    }
+  languages: [
+    "English — C1 Professional",
+    "German — B1 (actively advancing)"
   ],
   statistics: [
-    { value: "10+", label: "Practical coding projects" },
-    { value: "5+", label: "Technical areas explored" },
-    { value: "2026", label: "Expected graduation" }
+    { value: "1+ Years", label: "Professional experience" },
+    { value: "4+", label: "Power BI dashboards" },
+    { value: "500K+", label: "ETL records processed" }
   ]
 };
