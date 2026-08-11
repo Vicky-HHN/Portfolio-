@@ -13,15 +13,16 @@ interface ProjectCardProps {
 export function ProjectCard({ project, index }: ProjectCardProps) {
   const isReducedMotion = useReducedMotion();
 
+  // Fine, consistent stagger delays
   const cardVariants: Variants = {
-    hidden: { opacity: 0, y: 40 },
+    hidden: { opacity: 0, y: 35 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
         duration: 0.8,
         ease: [0.16, 1, 0.3, 1],
-        delay: index * 0.1,
+        delay: index * 0.12,
       }
     }
   };
@@ -29,12 +30,14 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
   return (
     <motion.div
       variants={isReducedMotion ? undefined : cardVariants}
-      className={`group relative rounded-2xl bg-surface border border-stroke/50 overflow-hidden flex flex-col justify-between transition-all duration-500 hover:border-accent-blue/30 ${
+      whileHover={isReducedMotion ? {} : { scale: 1.03, y: -4 }}
+      transition={{ type: "spring", stiffness: 350, damping: 25 }}
+      className={`group relative rounded-2xl bg-surface border border-stroke/50 overflow-hidden flex flex-col justify-between transition-all duration-500 hover:border-accent-blue/30 hover:shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_15px_rgba(137,170,204,0.05)] ${
         project.size === "large" ? "md:col-span-2" : "md:col-span-1"
       }`}
     >
       {/* Background radial gradient on hover */}
-      <div className="absolute inset-0 bg-gradient-to-br from-accent-blue/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-br from-accent-blue/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
       {/* Decorative Grid Line System on background */}
       <div className="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none" />
@@ -95,7 +98,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
           </p>
         </div>
 
-        {/* Dynamic visual representation box (charts, tables, data flows) */}
+        {/* Dynamic visual representation box with slight parallax internal scales */}
         <div className="my-6 rounded-xl border border-stroke/40 bg-black/40 p-4 relative overflow-hidden group-hover:border-accent-blue/10 transition-colors">
           {/* Subtle graph element visual representations */}
           <div className="flex items-center gap-2 mb-2">
@@ -183,7 +186,7 @@ export default function Projects() {
           variants={isReducedMotion ? undefined : containerVariants}
           initial={isReducedMotion ? undefined : "hidden"}
           whileInView={isReducedMotion ? undefined : "visible"}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, amount: 0.15 }}
           className="grid grid-cols-1 md:grid-cols-2 gap-6"
         >
           {portfolioData.projects.map((proj, idx) => (

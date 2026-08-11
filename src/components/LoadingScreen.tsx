@@ -16,14 +16,15 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
   // Handle counter counting up
   useEffect(() => {
     let animationFrameId: number;
-    const duration = isReducedMotion ? 1200 : 2300; // slightly shorter if reduced motion preferred
+    // Premium loading duration matching 2.2s to 2.7s duration
+    const duration = isReducedMotion ? 1200 : 2400;
     const startTime = performance.now();
 
     const updateCounter = (currentTime: number) => {
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
 
-      // Smooth non-linear progress
+      // Premium cubic ease-out calculation for smooth non-linear increment speed
       const easeProgress = 1 - Math.pow(1 - progress, 3);
       const nextCount = Math.floor(easeProgress * 100);
 
@@ -44,73 +45,90 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
     return () => cancelAnimationFrame(animationFrameId);
   }, [onComplete, isReducedMotion]);
 
-  // Cycle through words
+  // Cycle through words smoothly
   useEffect(() => {
+    if (isReducedMotion) return;
     const wordInterval = setInterval(() => {
       setWordIndex((prev) => (prev + 1) % words.length);
-    }, 700);
+    }, 750);
 
     return () => clearInterval(wordInterval);
-  }, []);
+  }, [isReducedMotion]);
 
   return (
-    <div className="fixed inset-0 z-[9999] flex flex-col justify-between bg-black p-8 md:p-16 select-none font-sans">
+    <motion.div
+      initial={{ opacity: 1 }}
+      exit={{ opacity: 0, filter: "blur(10px)" }}
+      transition={{ duration: 0.5, ease: "easeInOut" }}
+      className="fixed inset-0 z-[9999] flex flex-col justify-between bg-black p-8 md:p-16 select-none font-sans"
+    >
       {/* Top Section */}
       <div className="flex justify-between items-center w-full">
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-xs tracking-widest text-muted uppercase"
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="text-[10px] md:text-xs tracking-widest text-muted uppercase font-mono"
         >
-          Vishva Gandhi &middot; Portfolio Ingestion
+          Vishva Gandhi &middot; Ingestion Engine
         </motion.div>
-        <div className="text-xs text-muted font-mono uppercase">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.6 }}
+          transition={{ delay: 0.2, duration: 0.6 }}
+          className="text-[10px] md:text-xs text-muted font-mono uppercase"
+        >
           Heilbronn, DE
-        </div>
+        </motion.div>
       </div>
 
       {/* Center Word Animation */}
       <div className="flex flex-col items-center justify-center">
-        <div className="h-16 overflow-hidden flex items-center justify-center">
+        <div className="h-20 overflow-hidden flex items-center justify-center">
           <AnimatePresence mode="wait">
             {!isReducedMotion ? (
               <motion.span
                 key={words[wordIndex]}
-                initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
+                initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                exit={{ opacity: 0, y: -20, filter: "blur(4px)" }}
-                transition={{ duration: 0.4, ease: "easeInOut" }}
-                className="text-4xl md:text-5xl font-semibold font-serif-italic blue-gradient-text"
+                exit={{ opacity: 0, y: -20, filter: "blur(6px)" }}
+                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                className="text-4xl md:text-6xl font-bold font-serif-italic blue-gradient-text drop-shadow-[0_0_15px_rgba(137,170,204,0.15)]"
               >
                 {words[wordIndex]}
               </motion.span>
             ) : (
-              <span className="text-4xl md:text-5xl font-semibold font-serif-italic blue-gradient-text">
-                {words[wordIndex]}
+              <span className="text-4xl md:text-6xl font-bold font-serif-italic blue-gradient-text">
+                Analyze
               </span>
             )}
           </AnimatePresence>
         </div>
       </div>
 
-      {/* Bottom Progress Bar & Counter */}
-      <div className="flex flex-col gap-4 w-full max-w-xl mx-auto">
+      {/* Bottom Progress Bar & Counter with Ambient Pulsating Glow */}
+      <div className="flex flex-col gap-5 w-full max-w-xl mx-auto relative">
         <div className="flex justify-between items-end text-sm">
-          <span className="text-muted text-xs tracking-wider">BOOTING SYSTEM...</span>
-          <span className="font-mono text-3xl font-semibold text-text tabular-nums">
-            {String(counter).padStart(3, "0")}
+          <motion.span
+            animate={{ opacity: [0.4, 0.9, 0.4] }}
+            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+            className="text-muted text-[10px] font-mono tracking-[0.2em]"
+          >
+            INITIALIZING REPORTING ENV...
+          </motion.span>
+          <span className="font-mono text-4xl font-semibold text-text tabular-nums tracking-tight">
+            {String(counter).padStart(3, "0")}%
           </span>
         </div>
 
-        {/* Progress Bar Container */}
-        <div className="h-[2px] w-full bg-stroke rounded-full overflow-hidden">
+        {/* Progress Bar Container with accent shadow */}
+        <div className="h-[3px] w-full bg-stroke rounded-full overflow-hidden relative shadow-[0_0_12px_rgba(78,133,191,0.1)]">
           <div
-            className="h-full blue-gradient origin-left transition-transform duration-75 ease-out"
+            className="h-full blue-gradient origin-left transition-transform duration-75 ease-out shadow-[0_0_8px_#89AACC]"
             style={{ transform: `scaleX(${counter / 100})` }}
           />
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
